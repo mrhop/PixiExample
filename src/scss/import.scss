@@ -1,0 +1,6 @@
+@import "../../node_modules/compass-mixins/lib/compass";
+@import "../../node_modules/compass-mixins/lib/animate";
+@import "../../node_modules/compass-mixins/lib/lemonade";
+
+$icon-font-path: "../assets/fonts/bootstrap/" !default;
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
