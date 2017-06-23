@@ -1,2 +1,4 @@
 Pixi example
-use webpack + scss
+use nodejs + webpack + scss
+
+http://www.pixijs.com/
