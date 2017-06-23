@@ -4,28 +4,32 @@
 import './index.scss'
 var PIXI = global.PIXI
 
-var stage = new PIXI.Container()
-var renderer = PIXI.autoDetectRenderer(256, 256)
-document.body.appendChild(renderer.view)
+var app = new PIXI.Application(800, 600, {backgroundColor: 0x1099bb})
+document.body.appendChild(app.view)
+var container = new PIXI.Container()
+app.stage.addChild(container)
 
-// Use Pixi's built-in `loader` object to load an image
-PIXI.loader
-  .add('/static/img/cat.png')
-  .load(setup)
+// create a new Sprite from an image path
+var texture = PIXI.Texture.fromImage('/static/img/cat.png')
 
-// This `setup` function will run when the image has loaded
-function setup() {
-  // Create the `cat` sprite from the texture
-  var cat = new PIXI.Sprite(
-    PIXI.loader.resources['/static/img/cat.png'].texture
-  )
-  cat.x = 96
-  cat.y = 96
-  cat.rotation = 0.5
+// center the sprite's anchor point
 
-  // Add the cat to the stage
-  stage.addChild(cat)
-
-  // Render the stage
-  renderer.render(stage)
+for (var i = 0; i < 25; i++) {
+  var bunny = new PIXI.Sprite(texture)
+  bunny.anchor.set(0.5)
+  bunny.x = (i % 5) * 80
+  bunny.y = Math.floor(i / 5) * 80
+  container.addChild(bunny)
 }
+
+// Center on the screen
+container.x = (app.renderer.width - container.width) / 2
+container.y = (app.renderer.height - container.height) / 2
+
+// Listen for animate update
+app.ticker.add(function (delta) {
+  // just for fun, let's rotate mr rabbit a little
+  // delta is 1 if running at 100% performance
+  // creates frame-independent tranformation
+})
+
